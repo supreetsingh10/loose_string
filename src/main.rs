@@ -1,5 +1,6 @@
-// loop that will go on forever, checking 
 use libra::file_monitor::file_monitor as fm; 
+
+
 fn main() {
     let mut dirs: Vec<String> = std::env::args().skip(1).collect(); 
     if dirs.is_empty() {
@@ -8,5 +9,5 @@ fn main() {
 
     let hash_map = fm::initialize_file_monitor(dirs); 
 
-    // make these paths tomorrow.
+    // loop that will go on forever, checking for changes in sha256
 }
