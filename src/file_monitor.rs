@@ -84,6 +84,7 @@ pub mod file_monitor {
     pub fn updates(hash_map: &mut HashMap<PathBuf, Vec<HashMap<PathBuf, String>>>) -> Vec<(PathBuf, Changes)> {
         let changed_files = check_for_modifications(hash_map); 
         let created_files = check_for_creation(hash_map); 
+        changed_files.extend(created_files); 
         changed_files
     }
 
