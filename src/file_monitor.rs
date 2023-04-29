@@ -1,6 +1,7 @@
 pub mod file_monitor {
     use std::collections::HashMap; 
-                                                                    // dir, map<file, sha>
+    use crate::common::common::Changes; 
+
     pub fn initialize_file_monitor(v_sdir: Vec<String>) -> HashMap<PathBuf, Vec<HashMap<PathBuf, String>>> {
         // let uppercase: Vec<String> = v_sdir.into_iter().map(|d| d.to_string().to_uppercase()).collect(); 
         // println!("{:?}", uppercase); 
@@ -76,23 +77,6 @@ pub mod file_monitor {
         };
     }
 
-    use std::fmt as fmt; 
-    pub enum Changes {
-        Creation,
-        Deletion,
-        Modified
-    }
-
-    // Required to format the Enum values. 
-    impl fmt::Display for Changes {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            match self {
-                Changes::Creation => write!(f, "Creation"),
-                Changes::Deletion => write!(f, "Deletion"),
-                Changes::Modified => write!(f, "Modified"),
-            }
-        }
-    }
 
     pub fn updates(hash_map: &mut HashMap<PathBuf, Vec<HashMap<PathBuf, String>>>) -> Vec<(PathBuf, Changes)> {
         let mut changed_files = check_for_modifications(hash_map); 
